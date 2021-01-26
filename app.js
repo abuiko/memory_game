@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
     cardArray.sort(() => 0.5 - Math.random());
 
     const grid = document.querySelector('.grid');
+    let cardsChosen = [];
+    let cardsChosenIds = [];
 
     function createBoard() {
         for (let i = 0; i < cardArray.length; i++) {
@@ -60,11 +62,21 @@ document.addEventListener("DOMContentLoaded", () => {
             card.setAttribute('src', 'img/nature.png');
             card.classList.add('cardStyle');
             card.setAttribute('data-id', i);
+            card.addEventListener('click', flipCard);
             grid.appendChild(card);
         }
     }
 
     createBoard();
+
+    function flipCard() {
+        let cardId = this.getAttribute('data-id');
+        cardsChosen.push(cardArray[cardId].name);
+        cardsChosenIds.push(cardId);
+        this.setAttribute('src', cardArray[cardId].img);
+
+
+    }
 
 
 
